@@ -1,5 +1,6 @@
 package com.gil.impacthon1st_backend.domain.party.controller.dto.response
 
+import com.gil.impacthon1st_backend.domain.user.domain.Gender
 import com.querydsl.core.annotations.QueryProjection
 import java.time.LocalDateTime
 
@@ -15,6 +16,9 @@ data class PartyResponse @QueryProjection constructor(
     val count: Int,
     val partyMemberCount: Long,
     val profileImageUrl: String,
+    val username: String,
+    val gender: Gender,
+    val meetAt: LocalDateTime,
     val title: String,
     val content: String,
 )

@@ -30,6 +30,9 @@ class PartyRepository(
                     party.count,
                     count(partyMember),
                     user.profileImageUrl,
+                    user.name,
+                    user.gender,
+                    party.meetAt,
                     party.title,
                     party.content
                 )
