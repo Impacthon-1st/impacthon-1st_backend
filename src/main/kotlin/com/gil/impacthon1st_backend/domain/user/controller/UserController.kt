@@ -2,12 +2,15 @@ package com.gil.impacthon1st_backend.domain.user.controller
 
 import com.gil.impacthon1st_backend.domain.user.controller.dto.request.CreateUserRequest
 import com.gil.impacthon1st_backend.domain.user.controller.dto.request.LoginRequest
+import com.gil.impacthon1st_backend.domain.user.controller.dto.response.QueryMyInfoResponse
 import com.gil.impacthon1st_backend.domain.user.controller.dto.response.TokenResponse
 import com.gil.impacthon1st_backend.domain.user.service.CreateUserService
 import com.gil.impacthon1st_backend.domain.user.service.LoginService
+import com.gil.impacthon1st_backend.domain.user.service.QueryMyInfoService
 import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(
     private val createUserService: CreateUserService,
     private val loginService: LoginService,
+    private val queryMyInfoService: QueryMyInfoService,
 ) {
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,4 +33,8 @@ class UserController(
     @PostMapping("/login")
     fun login(@RequestBody @Valid request: LoginRequest): TokenResponse =
         loginService.execute(request)
+
+    @GetMapping
+    fun queryMyInfo(): QueryMyInfoResponse =
+        queryMyInfoService.execute()
 }
