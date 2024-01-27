@@ -39,6 +39,8 @@ dependencies {
 
     implementation("io.github.kilmajster:ngrok-spring-boot-starter:0.9.0")
 
+    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
+
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")

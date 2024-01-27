@@ -1,4 +1,7 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${DB_URL:localhost}:3306/${DB_NAME:impact}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&tinyInt1isBit=false&rewriteBatchedStatements=true
@@ -18,3 +21,15 @@ ngrok:
   enabled: true
   auth-token: ${NGROK_AUTH_TOKEN}
   command: http --domain=precise-socially-mackerel.ngrok-free.app 8080
+
+cloud:
+  aws:
+    s3:
+      bucket: ${S3_BUCKET:jobis-store}
+    credentials:
+      access-key: ${AWS_ACCESS:asdf}
+      secret-key: ${AWS_SECRET:asdf}
+    region:
+      static: ${S3_REGION:ap-northeast-2}
+    stack:
+      auto: false
