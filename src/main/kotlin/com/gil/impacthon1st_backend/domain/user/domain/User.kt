@@ -2,6 +2,8 @@ package com.gil.impacthon1st_backend.domain.user.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -35,9 +37,11 @@ class User (
     val name: String,
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(6)")
     val gender: Gender,
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "CHAR(4)")
     val mbti: MBTI,
 )
