@@ -5,6 +5,7 @@ import com.gil.impacthon1st_backend.global.filter.FilterConfig
 import com.gil.impacthon1st_backend.global.security.jwt.JwtTokenParser
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -28,7 +29,12 @@ class SecurityConfig(
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
             .authorizeHttpRequests {
-                it.anyRequest().permitAll()
+                it
+                    // party
+                    .requestMatchers(HttpMethod.POST, "/parties").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/parties/{party-id}").authenticated()
+
+                    .anyRequest().permitAll()
             }
             .apply(FilterConfig(jwtTokenParser, objectMapper))
 
