@@ -17,4 +17,4 @@ jwt:
 ngrok:
   enabled: true
   auth-token: ${NGROK_AUTH_TOKEN}
-  command: http --domain=active-greatly-cougar.ngrok-free.app 8080
+  command: http --domain=precise-socially-mackerel.ngrok-free.app 8080
