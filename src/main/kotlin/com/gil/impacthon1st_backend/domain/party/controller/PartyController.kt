@@ -1,6 +1,6 @@
-package com.gil.impacthon1st_backend.domain.party.domain.controller
+package com.gil.impacthon1st_backend.domain.party.controller
 
-import com.gil.impacthon1st_backend.domain.party.domain.controller.dto.request.CreatePartyRequest
+import com.gil.impacthon1st_backend.domain.party.controller.dto.request.CreatePartyRequest
 import com.gil.impacthon1st_backend.domain.party.service.CreatePartyService
 import com.gil.impacthon1st_backend.domain.party.service.EnterPartyService
 import io.swagger.v3.oas.annotations.Operation

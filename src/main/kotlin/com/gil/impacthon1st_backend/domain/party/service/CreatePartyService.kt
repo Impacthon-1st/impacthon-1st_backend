@@ -2,7 +2,7 @@ package com.gil.impacthon1st_backend.domain.party.service
 
 import com.gil.impacthon1st_backend.domain.party.domain.Party
 import com.gil.impacthon1st_backend.domain.party.domain.PartyMember
-import com.gil.impacthon1st_backend.domain.party.domain.controller.dto.request.CreatePartyRequest
+import com.gil.impacthon1st_backend.domain.party.controller.dto.request.CreatePartyRequest
 import com.gil.impacthon1st_backend.domain.party.domain.repository.PartyJpaRepository
 import com.gil.impacthon1st_backend.domain.party.domain.repository.PartyMemberJpaRepository
 import com.gil.impacthon1st_backend.domain.user.controller.dto.request.CreateUserRequest

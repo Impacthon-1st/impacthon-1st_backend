@@ -1,4 +1,4 @@
-package com.gil.impacthon1st_backend.domain.party.domain.controller.dto.request
+package com.gil.impacthon1st_backend.domain.party.controller.dto.request
 
 import java.time.LocalDateTime
 
