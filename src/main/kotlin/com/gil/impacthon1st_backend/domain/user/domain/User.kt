@@ -6,12 +6,14 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import org.jetbrains.annotations.NotNull
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity
 class User (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0L,
 
     @NotNull
     @Column(columnDefinition = "VARCHAR(30)", unique = true)
@@ -25,12 +27,14 @@ class User (
     val number: String,
 
     @NotNull
+    @Column(columnDefinition = "DATE")
+    val birthday: LocalDate,
+
+    @NotNull
     @Column(columnDefinition = "VARCHAR(30)")
     val name: String,
 
-    @Column(columnDefinition = "INT")
-    val age: Int,
-
+    @NotNull
     @Column(columnDefinition = "VARCHAR(6)")
     val gender: Gender,
 
