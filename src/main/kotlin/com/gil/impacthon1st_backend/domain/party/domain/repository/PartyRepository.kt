@@ -4,6 +4,8 @@ import com.gil.impacthon1st_backend.domain.party.controller.dto.response.QueryCu
 import com.gil.impacthon1st_backend.domain.party.controller.dto.response.PartyResponse
 import com.gil.impacthon1st_backend.domain.party.controller.dto.response.QPartyResponse
 import com.gil.impacthon1st_backend.domain.party.controller.dto.response.QQueryCurrentPartyResponse
+import com.gil.impacthon1st_backend.domain.party.controller.dto.response.QRequestedPartyMemberResponse
+import com.gil.impacthon1st_backend.domain.party.controller.dto.response.RequestedPartyMemberResponse
 import com.gil.impacthon1st_backend.domain.party.domain.QParty.party
 import com.gil.impacthon1st_backend.domain.party.domain.QPartyMember.partyMember
 import com.gil.impacthon1st_backend.domain.user.domain.QUser.user
@@ -63,5 +65,24 @@ class PartyRepository(
                 partyMember.user.id.eq(userId)
             )
             .fetchOne()
+
+    fun queryPartyMembersByUserIdAndMeetAtIsAfterNow(userId: Long): List<RequestedPartyMemberResponse> =
+        queryFactory
+            .select(
+                QRequestedPartyMemberResponse(
+                    partyMember.id,
+                    user.profileImageUrl,
+                    user.name,
+                )
+            )
+            .from(partyMember)
+            .join(partyMember.party, party)
+            .join(party.user, user)
+            .where(
+                user.id.eq(userId),
+                party.meetAt.after(LocalDateTime.now()),
+                partyMember.agree.eq(false)
+            )
+            .fetch()
 
 }

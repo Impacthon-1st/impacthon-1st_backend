@@ -8,6 +8,7 @@ import com.gil.impacthon1st_backend.domain.party.service.EnterAgreePartyService
 import com.gil.impacthon1st_backend.domain.party.service.EnterRequestPartyService
 import com.gil.impacthon1st_backend.domain.party.service.QueryCurrentPartyService
 import com.gil.impacthon1st_backend.domain.party.service.QueryPartyListService
+import com.gil.impacthon1st_backend.domain.party.service.QueryRequestedPartyMemberService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -27,6 +28,7 @@ class PartyController(
     private val enterAgreePartyService: EnterAgreePartyService,
     private val queryPartyListService: QueryPartyListService,
     private val queryCurrentPartyService: QueryCurrentPartyService,
+    private val queryRequestedPartyMemberService: QueryRequestedPartyMemberService,
 ) {
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,7 +43,7 @@ class PartyController(
         enterRequestPartyService.execute(partyId)
     }
 
-    @PatchMapping("/{party-member-id}")
+    @PatchMapping("/member/{party-member-id}")
     fun enterAgreeParty(@PathVariable("party-member-id") partyMemberId: Long) {
         enterAgreePartyService.execute(partyMemberId)
     }
@@ -49,6 +51,10 @@ class PartyController(
     @GetMapping
     fun queryPartyList(): QueryPartyListResponse =
         queryPartyListService.execute()
+
+    @GetMapping("/member/requested")
+    fun queryRequestedPartyMember() =
+        queryRequestedPartyMemberService.execute()
 
     @GetMapping("/current")
     fun queryCurrentParty(): QueryCurrentPartyResponse =
