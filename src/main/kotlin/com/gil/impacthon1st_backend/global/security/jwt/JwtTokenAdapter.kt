@@ -13,7 +13,7 @@ class JwtTokenAdapter(
     private val jwtProperties: JwtProperties,
 ) {
 
-    fun generateTokens(id: UUID): TokenResponse {
+    fun generateTokens(id: Long): TokenResponse {
         val accessToken = generateAccessToken(id)
 
         return TokenResponse(
@@ -22,11 +22,11 @@ class JwtTokenAdapter(
         )
     }
 
-    private fun generateAccessToken(id: UUID): String {
+    private fun generateAccessToken(id: Long): String {
         return generateToken(TokenType.ACCESS, id, jwtProperties.accessExp)
     }
 
-    private fun generateToken(type: TokenType, id: UUID, exp: Int): String {
+    private fun generateToken(type: TokenType, id: Long, exp: Int): String {
         return Jwts.builder()
             .setSubject(id.toString())
             .signWith(SignatureAlgorithm.HS256, jwtProperties.secret)

@@ -13,9 +13,8 @@ class SecurityAdapter(
     fun encodePassword(password: String): String =
         passwordEncoder.encode(password)
 
-    fun getCurrentUserId(): UUID = UUID.fromString(
-        SecurityContextHolder.getContext().authentication.name,
-    )
+    fun getCurrentUserId(): Long =
+        SecurityContextHolder.getContext().authentication.name.toLong()
 
     fun passwordMatches(rawPassword: String, encodePassword: String): Boolean =
         passwordEncoder.matches(rawPassword, encodePassword)
