@@ -74,8 +74,8 @@ class PartyRepository(
             .select(
                 QRequestedPartyMemberResponse(
                     partyMember.id,
-                    user.profileImageUrl,
-                    user.name,
+                    partyMember.user.profileImageUrl,
+                    partyMember.user.name,
                 )
             )
             .from(partyMember)
