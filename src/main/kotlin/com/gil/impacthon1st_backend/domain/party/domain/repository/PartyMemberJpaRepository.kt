@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface PartyMemberJpaRepository : JpaRepository<PartyMember, Long> {
     fun findAllByParty(party: Party): List<PartyMember>
+    fun findByIdAndParty(id: Long, party: Party): PartyMember?
 }

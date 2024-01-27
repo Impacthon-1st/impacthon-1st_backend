@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class EnterPartyService(
+class EnterRequestPartyService(
     private val partyJpaRepository: PartyJpaRepository,
     private val partyMemberJpaRepository: PartyMemberJpaRepository,
     private val userJpaRepository: UserJpaRepository,
@@ -39,6 +39,7 @@ class EnterPartyService(
             PartyMember(
                 party = party,
                 user = user,
+                agree = false,
             )
         )
     }

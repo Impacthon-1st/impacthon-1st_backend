@@ -33,6 +33,7 @@ class SecurityConfig(
                     // party
                     .requestMatchers(HttpMethod.POST, "/parties").authenticated()
                     .requestMatchers(HttpMethod.POST, "/parties/{party-id}").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/parties/current").authenticated()
 
                     .anyRequest().permitAll()
             }

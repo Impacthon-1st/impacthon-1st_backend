@@ -10,6 +10,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import org.jetbrains.annotations.NotNull
+import org.springframework.data.annotation.CreatedDate
 import java.time.LocalDateTime
 
 @Entity
@@ -18,6 +19,10 @@ class Party(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
+
+    @NotNull
+    @Column(columnDefinition = "VARCHAR(100)")
+    val title: String,
 
     @Column(columnDefinition = "DATETIME")
     val meetAt: LocalDateTime,
@@ -61,4 +66,7 @@ class Party(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     val user: User,
+
+    @CreatedDate
+    val createdAt: LocalDateTime = LocalDateTime.now(),
 )

@@ -7,11 +7,13 @@ import com.gil.impacthon1st_backend.domain.party.domain.repository.PartyJpaRepos
 import com.gil.impacthon1st_backend.domain.party.domain.repository.PartyMemberJpaRepository
 import com.gil.impacthon1st_backend.domain.user.controller.dto.request.CreateUserRequest
 import com.gil.impacthon1st_backend.domain.user.domain.repository.UserJpaRepository
+import com.gil.impacthon1st_backend.global.exception.ConflictException
 import com.gil.impacthon1st_backend.global.exception.NotFoundException
 import com.gil.impacthon1st_backend.global.security.SecurityAdapter
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 
 @Service
 class CreatePartyService(
@@ -26,9 +28,14 @@ class CreatePartyService(
         val user = userJpaRepository.findByIdOrNull(securityAdapter.getCurrentUserId())
             ?: throw NotFoundException("User Not Found")
 
+        if (partyJpaRepository.existsByUserAndMeetAtIsAfter(user, LocalDateTime.now())) {
+            throw ConflictException("Party Already Exists")
+        }
+
         val party = request.run {
             partyJpaRepository.save(
                 Party(
+                    title = title,
                     meetAt = meetAt,
                     meetPlaceXPoint = meetPlaceXPoint,
                     meetPlaceYPoint = meetPlaceYPoint,
@@ -48,6 +55,7 @@ class CreatePartyService(
             PartyMember(
                 party = party,
                 user = user,
+                agree = true,
             )
         )
     }
