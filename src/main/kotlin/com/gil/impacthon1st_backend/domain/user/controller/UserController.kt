@@ -7,9 +7,11 @@ import com.gil.impacthon1st_backend.domain.user.service.CreateUserService
 import com.gil.impacthon1st_backend.domain.user.service.LoginService
 import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/users")
@@ -19,12 +21,11 @@ class UserController(
     private val loginService: LoginService,
 ) {
 
-    @Operation(summary = "회원가입 api")
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun createUser(@RequestBody @Valid request: CreateUserRequest): TokenResponse =
         createUserService.execute(request)
 
-    @Operation(summary = "로그인 api")
     @PostMapping("/login")
     fun login(@RequestBody @Valid request: LoginRequest): TokenResponse =
         loginService.execute(request)
