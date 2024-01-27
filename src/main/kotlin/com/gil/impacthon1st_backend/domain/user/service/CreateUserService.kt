@@ -35,6 +35,7 @@ class CreateUserService(
                 name = request.name,
                 gender = request.gender,
                 mbti = request.mbti,
+                profileImageUrl = request.profileImageUrl
             )
         )
 

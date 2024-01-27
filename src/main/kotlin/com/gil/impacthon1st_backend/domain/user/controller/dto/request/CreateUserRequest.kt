@@ -32,5 +32,9 @@ data class CreateUserRequest(
     @NotNull
     val mbti: MBTI,
 
+    @NotNull
     val category: List<String>,
+
+    @NotNull
+    val profileImageUrl: String,
 )

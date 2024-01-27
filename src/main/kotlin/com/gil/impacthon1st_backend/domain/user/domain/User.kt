@@ -41,9 +41,14 @@ class User (
     @Column(columnDefinition = "VARCHAR(6)")
     val gender: Gender,
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "CHAR(4)")
     val mbti: MBTI,
+
+    @NotNull
+    @Column(columnDefinition = "VARCHAR(255)")
+    val profileImageUrl: String,
 )
 
 enum class Gender {
