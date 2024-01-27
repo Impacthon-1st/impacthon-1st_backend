@@ -5,6 +5,7 @@ import com.gil.impacthon1st_backend.domain.user.controller.dto.request.LoginRequ
 import com.gil.impacthon1st_backend.domain.user.controller.dto.response.TokenResponse
 import com.gil.impacthon1st_backend.domain.user.service.CreateUserService
 import com.gil.impacthon1st_backend.domain.user.service.LoginService
+import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,10 +19,12 @@ class UserController(
     private val loginService: LoginService,
 ) {
 
+    @Operation(summary = "회원가입 api")
     @PostMapping
     fun createUser(@RequestBody @Valid request: CreateUserRequest): TokenResponse =
         createUserService.execute(request)
 
+    @Operation(summary = "로그인 api")
     @PostMapping("/login")
     fun login(@RequestBody @Valid request: LoginRequest): TokenResponse =
         loginService.execute(request)

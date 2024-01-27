@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull
 class Category (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0L,
 
     @NotNull
     @Column(columnDefinition = "VARCHAR(100)")
