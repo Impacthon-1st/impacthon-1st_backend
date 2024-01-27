@@ -34,7 +34,11 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/parties").authenticated()
                     .requestMatchers(HttpMethod.POST, "/parties/{party-id}").authenticated()
                     .requestMatchers(HttpMethod.GET, "/parties/current").authenticated()
+                    .requestMatchers(HttpMethod.PATCH, "/parties/member/{party-member-id}").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/parties/member/requested").authenticated()
 
+                    // user
+                    .requestMatchers(HttpMethod.GET, "/users").authenticated()
                     .anyRequest().permitAll()
             }
             .apply(FilterConfig(jwtTokenParser, objectMapper))
